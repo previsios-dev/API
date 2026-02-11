@@ -6,7 +6,6 @@ async def executar_previsao(vazao_atual: float, pressao_atual: float, lat: float
     t = get_features_temporais()
     clima = await get_clima_real(lat, lon)
     
-    # Lags Mockados
     lags = {
         "vazao1h": vazao_atual - 34,       
         "vazao2h": vazao_atual - 50,
