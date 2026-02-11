@@ -13,7 +13,6 @@ raw_password = "8AiwsA8A.Veh@Qc"
 
 safe_password = urllib.parse.quote_plus(raw_password)
 DATABASE_URL = f"postgresql://postgres.mhtossnifudvdoauyott:{safe_password}@aws-0-us-west-2.pooler.supabase.com:6543/postgres"
-engine = create_engine(DATABASE_URL, poolclass=NullPool)
 engine = create_engine(
     DATABASE_URL,
     poolclass=NullPool,
