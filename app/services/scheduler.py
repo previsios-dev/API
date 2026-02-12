@@ -44,7 +44,7 @@ def tarefa_agendada_horaria():
 
 def start_scheduler():
     if not scheduler.running:
-        scheduler.add_job(tarefa_agendada_horaria, 'interval', minutes=1)
+        scheduler.add_job(tarefa_agendada_horaria, 'interval', hours=1)
         scheduler.start()
         print("[Scheduler] Serviço iniciado e rodando a cada 1 minuto.")
 

@@ -19,4 +19,4 @@ app.include_router(previsio.router)
 
 @app.get("/")
 def read_root():
-    return {"status": "API Online", "v1": "Previsão LSTM ativa", "scheduler": "Rodando (1 min)"}
+    return {"status": "API Online", "v1": "Previsão LSTM ativa", "scheduler": "Rodando (1 h)"}
