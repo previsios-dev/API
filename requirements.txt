@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+python-dotenv
+httpx
+apscheduler
+pandas
+numpy
+tensorflow-cpu
+joblib
+scikit-learn
+holidays
+psycopg2-binary

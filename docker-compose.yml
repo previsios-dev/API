@@ -1,0 +1,12 @@
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: previsio_api
+    env_file:
+      - app/.env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
