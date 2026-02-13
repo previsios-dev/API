@@ -1,8 +1,13 @@
 import httpx
+import os
 
-API_KEY = "3a4b322bf87fc7f11c25e26bc0a82920" 
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
-async def get_clima_real(lat: float, lon: float): 
+
+async def get_clima_real(lat: float, lon: float):
+    if not API_KEY:
+        raise RuntimeError("OPENWEATHER_API_KEY não configurada.")
+
     url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
         "lat": lat,
@@ -11,16 +16,15 @@ async def get_clima_real(lat: float, lon: float):
         "units": "metric"
     }
     
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=10.0) as client:
         try:
             response = await client.get(url, params=params)
             response.raise_for_status()
             data = response.json()
-            
+
             return {
-                "temp": data["main"]["temp"],
-                "humidity": data["main"]["humidity"]
+                "temp": float(data["main"]["temp"]),
+                "humidity": float(data["main"]["humidity"])
             }
-        except Exception as e:
-            print(f"Erro no clima: {e}")
-            
+        except (httpx.HTTPError, KeyError, ValueError, TypeError) as e:
+            raise RuntimeError(f"Falha ao consultar OpenWeather: {e}") from e

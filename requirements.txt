@@ -6,7 +6,7 @@ httpx
 apscheduler
 pandas
 numpy
-tensorflow-cpu
+tensorflow
 joblib
 scikit-learn
 holidays

@@ -1,11 +1,8 @@
-import uuid
-import asyncio
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.db import get_db, SessionLocal  
+from app.db import get_db
 from app.services.previsio_service import executar_previsao
 from app.models.previsio import Previsao
-from apscheduler.schedulers.background import BackgroundScheduler
 
 router = APIRouter(prefix="/previsao", tags=["ML - Previsão"])
 
@@ -58,27 +55,3 @@ async def get_previsao_vazao(
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=f"Erro ao salvar: {str(e)}")
-
-
-
-def tarefa_agendada_horaria():
-    
-    db = SessionLocal() 
-    try:
-        
-        v_atu, p_atu, lt, ln = 150.0, 30.0, -23.31, -51.16
-        
-        
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        loop.run_until_complete(calcular_e_persistir_previsao(v_atu, p_atu, lt, ln, db))
-        print("[Scheduler] Previsão horária executada com sucesso.")
-    except Exception as e:
-        print(f"[Scheduler] Falha na execução: {e}")
-    finally:
-        db.close() 
-
-
-scheduler = BackgroundScheduler()
-scheduler.add_job(tarefa_agendada_horaria, 'interval', minutes=30)
-scheduler.start()

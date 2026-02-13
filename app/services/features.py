@@ -2,10 +2,11 @@ from datetime import datetime
 import holidays
 import math
 
+
 def get_features_temporais():
     agora = datetime.now()
     hora = agora.hour
-    mes = agora.month  
+    mes = agora.month
     data_hoje = agora.date()
 
     dia_da_semana = agora.weekday()
@@ -39,7 +40,3 @@ def get_features_temporais():
         "hora_sen": round(hora_sen, 4),
         "hora_cos": round(hora_cos, 4)
     }
-
-# Testando a saída
-features = get_features_temporais()
-print(features)
