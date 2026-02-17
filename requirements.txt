@@ -8,6 +8,6 @@ pandas
 numpy
 tensorflow
 joblib
-scikit-learn
+scikit-learn==1.7.1
 holidays
 psycopg2-binary
