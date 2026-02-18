@@ -1,7 +1,7 @@
 import httpx
 import os
 
-API_KEY = os.getenv("OPENWEATHER_API_KEY")
+API_KEY = "3a4b322bf87fc7f11c25e26bc0a82920"
 
 
 async def get_clima_real(lat: float, lon: float):
