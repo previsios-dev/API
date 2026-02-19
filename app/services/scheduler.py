@@ -41,6 +41,7 @@ def tarefa_agendada_horaria():
         print(f"[Scheduler] Previsão de {valor_final} salva com sucesso às {pd.Timestamp.now()}.")
         clima = loop.run_until_complete(get_clima_real(lt, ln))
         series = get_features_temporais()
+        enviar_alerta_discord()
 
         if clima:
             print(f"[Scheduler] Temperatura usada: {clima['temp']} C | Umidade: {clima['humidity']}")
@@ -48,7 +49,6 @@ def tarefa_agendada_horaria():
 
     except Exception as e:
         print(f"[Scheduler] Erro crítico na tarefa agendada: {e}")
-        enviar_alerta_discord(e)
     finally:
         loop.close()
         db.close()
