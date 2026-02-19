@@ -6,6 +6,7 @@ from app.services.features import get_features_temporais
 from app.services.openweather import get_clima_real
 import asyncio
 import pandas as pd
+from utils import enviar_alerta_discord
 
 scheduler = BackgroundScheduler()
 
@@ -47,6 +48,7 @@ def tarefa_agendada_horaria():
 
     except Exception as e:
         print(f"[Scheduler] Erro crítico na tarefa agendada: {e}")
+        enviar_alerta_discord(e)
     finally:
         loop.close()
         db.close()
@@ -56,7 +58,7 @@ def start_scheduler():
         scheduler.add_job(
             tarefa_agendada_horaria,
             "cron",
-            minute=0,
+            minute="*",
             second=0,
             id="previsao_horaria",
             replace_existing=True,
