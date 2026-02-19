@@ -8,7 +8,7 @@ async def get_clima_real(lat: float, lon: float):
     if not API_KEY:
         raise RuntimeError("OPENWEATHER_API_KEY não configurada.")
 
-    #url = "https://api.openweathermap.org/data/2.5/weather"
+    url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
         "lat": lat,
         "lon": lon,
