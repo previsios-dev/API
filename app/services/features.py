@@ -1,10 +1,13 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import holidays
 import math
 
+SAO_PAULO_TZ = ZoneInfo("America/Sao_Paulo")
+
 
 def get_features_temporais():
-    agora = datetime.now()
+    agora = datetime.now(SAO_PAULO_TZ)
     hora = agora.hour
     mes = agora.month
     data_hoje = agora.date()

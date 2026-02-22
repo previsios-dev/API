@@ -1,11 +1,13 @@
 import requests
-import pandas as pd
 from datetime import datetime
+from zoneinfo import ZoneInfo
+
+SAO_PAULO_TZ = ZoneInfo("America/Sao_Paulo")
 
 def enviar_alerta_discord():
     
     webhook_url = "https://discord.com/api/webhooks/1475242713329828115/x0tpxd5Ht4P0KixqkJhgjBnYK6BsXVVA4Y7e4EceV26Ku0JD89fGj18SN8kdCHVHoMfv" 
-    horario_execucao = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    horario_execucao = datetime.now(SAO_PAULO_TZ).strftime("%d/%m/%Y %H:%M:%S")
 
     payload = {
         "embeds": [{
@@ -19,7 +21,7 @@ def enviar_alerta_discord():
                     "inline": False
                 }
             ],
-            "timestamp": datetime.utcnow().isoformat()
+            "timestamp": datetime.now(SAO_PAULO_TZ).isoformat()
         }]
     }
 
@@ -31,7 +33,7 @@ def enviar_alerta_discord():
 
 def enviar_alerta_discord_erro(mensagem_erro: str):
     webhook_url = "https://discord.com/api/webhooks/1475242713329828115/x0tpxd5Ht4P0KixqkJhgjBnYK6BsXVVA4Y7e4EceV26Ku0JD89fGj18SN8kdCHVHoMfv"
-    horario_execucao = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    horario_execucao = datetime.now(SAO_PAULO_TZ).strftime("%d/%m/%Y %H:%M:%S")
 
     payload = {
         "embeds": [{
@@ -50,7 +52,7 @@ def enviar_alerta_discord_erro(mensagem_erro: str):
                     "inline": False
                 }
             ],
-            "timestamp": datetime.utcnow().isoformat()
+            "timestamp": datetime.now(SAO_PAULO_TZ).isoformat()
         }]
     }
 

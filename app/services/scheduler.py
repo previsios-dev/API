@@ -5,10 +5,12 @@ from app.models.previsio import Previsao
 from app.services.features import get_features_temporais
 from app.services.openweather import get_clima_real
 import asyncio
-import pandas as pd
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from app.utils import enviar_alerta_discord, enviar_alerta_discord_erro
 
-scheduler = BackgroundScheduler()
+SAO_PAULO_TZ = ZoneInfo("America/Sao_Paulo")
+scheduler = BackgroundScheduler(timezone=SAO_PAULO_TZ)
 
 def tarefa_agendada_horaria():
     db = SessionLocal()
@@ -38,7 +40,7 @@ def tarefa_agendada_horaria():
         db.commit()
         db.refresh(nova_entrada)
 
-        print(f"[Scheduler] Previsão de {valor_final} salva com sucesso às {pd.Timestamp.now()}.")
+        print(f"[Scheduler] Previsão de {valor_final} salva com sucesso às {datetime.now(SAO_PAULO_TZ)}.")
         clima = loop.run_until_complete(get_clima_real(lt, ln))
         series = get_features_temporais()
         enviar_alerta_discord()
