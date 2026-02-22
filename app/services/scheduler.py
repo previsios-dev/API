@@ -6,7 +6,7 @@ from app.services.features import get_features_temporais
 from app.services.openweather import get_clima_real
 import asyncio
 import pandas as pd
-from utils import enviar_alerta_discord
+from app.utils import enviar_alerta_discord
 
 scheduler = BackgroundScheduler()
 
