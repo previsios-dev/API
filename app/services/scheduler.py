@@ -58,7 +58,7 @@ def start_scheduler():
         scheduler.add_job(
             tarefa_agendada_horaria,
             "cron",
-            minute="*",
+            minute=0,
             second=0,
             id="previsao_horaria",
             replace_existing=True,

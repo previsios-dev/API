@@ -4,7 +4,7 @@ from datetime import datetime
 
 def enviar_alerta_discord():
     # Substitua pela sua URL real ou use variável de ambiente (recomendado)
-    webhook_url = "https://discord.com/api/webhooks/1474044757117243506/WlJQ6gg_ssUjfWEyQ5E8Qe2xCVmtCaJofj5wdD3HV6V4Bz3d8FkBSvTqYJTbJSa_RgFD" 
+    webhook_url = "https://discord.com/api/webhooks/1475242713329828115/x0tpxd5Ht4P0KixqkJhgjBnYK6BsXVVA4Y7e4EceV26Ku0JD89fGj18SN8kdCHVHoMfv" 
     horario_execucao = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     payload = {
